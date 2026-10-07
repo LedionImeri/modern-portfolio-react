@@ -1,0 +1,55 @@
+@import './base.css';
+@import './components.css';
+@import './sections.css';
+
+/* ───────────────────────── Scroll reveal ───────────────────────── */
+[data-reveal] {
+  opacity: 0;
+  transform: translateY(22px);
+  transition:
+    opacity 0.8s var(--ease-out),
+    transform 0.8s var(--ease-out),
+    border-color 0.35s,
+    background-color 0.35s,
+    box-shadow 0.4s;
+  transition-delay: var(--d, 0ms), var(--d, 0ms), 0ms, 0ms, 0ms;
+}
+
+[data-reveal].is-visible {
+  opacity: 1;
+  transform: none;
+}
+
+/* Once revealed, hover transitions respond instantly (no stagger delay). */
+[data-reveal].reveal-done {
+  transition-delay: 0ms;
+}
+
+/* ───────────────────────── Reduced motion ───────────────────────── */
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    animation-delay: 0ms !important;
+    transition-duration: 0.001ms !important;
+    transition-delay: 0ms !important;
+  }
+
+  [data-reveal],
+  .hero-in,
+  .code__line {
+    opacity: 1 !important;
+    transform: none !important;
+    filter: none !important;
+  }
+
+  .marquee {
+    display: none;
+  }
+}
